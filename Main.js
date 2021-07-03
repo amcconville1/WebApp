@@ -1,16 +1,13 @@
-
 // Kaden's Comment
-const http = require('http');
-
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+// Please see http://localhost:3000 when running.
+var request = require('request');
+var query = 'Node.js';
+var url = `https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} +”&format=json`;
+request(url, function(err, response, body) {
+    if (err) {
+        var error = "cannot connect to server";
+        console.log(error);
+    } else {
+        console.log('body: ', body);
+    }
 });
